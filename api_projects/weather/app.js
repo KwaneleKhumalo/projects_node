@@ -8,14 +8,32 @@ const url = 'https://api.openweathermap.org/data/2.5/weather?q=Hamilton,MT,US&un
 
 app.get('/', (req, res) =>{
     https.get(url, (response) => {
-        console.log(response);
+        res.set("Content-Type", "text/html");
 
         response.on('data', (data) => {
-            const weatherData = JSON.parse(data);
-            console.log(weatherData);
+            const weatherData = JSON.parse(data);   //Parse data to readable json 
+            const weatherInfo = weatherData.weather[0];
+            const weatherDesc = weatherInfo.description;
+            const weatherIcon = weatherInfo.icon;
+            const iconURL = `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
+
+            const temp = weatherData.main.temp;
+            const feelsLike = weatherData.main.feels_like;
+
+            const city = weatherData.name;
+            const country = weatherData.sys.country;
+
+            res.write(`<h3> City: ${city}</h3>`);
+            res.write(`<h3>Country: ${country}</h3>`);
+            res.write(`<strong>Current temp<strong/>: <h1>${temp}</h1>`);
+            res.write(`<strong> Feels like: ${feelsLike}</strong>`);
+            res.write(`<img src="${iconURL}"style= 'border: 2px solid black'>`);
+
+
+            res.send();
         });
     })
-    res.send('Hello World!');
+    // res.send('Hello World!');
 })
 
 
