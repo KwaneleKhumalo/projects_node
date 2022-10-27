@@ -1,13 +1,27 @@
+const path = require('path');
 const express = require('express');
-require('dotenv').config;
+require('dotenv').config();
 const app = express();
 const https = require('https');
-const url = 'https://api.openweathermap.org/data/2.5/weather?q=Hamilton,MT,US&units=imperial&appid=f95216eeffb72e716c5fdac24d338856';
+const bodyParser = require('body-parser');
+
+app.use(express.static('./views/pages'));
+app.use(bodyParser.urlencoded({extended: true}));
+
+app.set('view engine', 'ejs');
 
 
+// Home Route
+app.post('/', (req, res) =>{
 
-app.get('/', (req, res) =>{
-    https.get(url, (response) => {
+    const lat = req.body.lat;
+    const long = req.body.long;
+
+    const url = process.env.URL;
+    const units = 'imperial'
+    const fullPath = `${url}&lat=${lat}&lon=${long}&units=${units}`;
+
+    https.get(fullPath, (response) => {
         res.set("Content-Type", "text/html");
 
         response.on('data', (data) => {
@@ -23,18 +37,22 @@ app.get('/', (req, res) =>{
             const city = weatherData.name;
             const country = weatherData.sys.country;
 
-            res.write(`<h3> City: ${city}</h3>`);
-            res.write(`<h3>Country: ${country}</h3>`);
-            res.write(`<strong>Current temp<strong/>: <h1>${temp}</h1>`);
-            res.write(`<strong> Feels like: ${feelsLike}</strong>`);
-            res.write(`<img src="${iconURL}"style= 'border: 2px solid black'>`);
+            res.render('pages/weather', {
+                city: city,
+                iconURL:iconURL,
+                temp: temp,
+                feelsLike: feelsLike,
+                weatherDesc: weatherDesc,
 
-
-            res.send();
+            });
         });
-    })
-    // res.send('Hello World!');
+    });
+
+
 })
+
+
+
 
 
 try {

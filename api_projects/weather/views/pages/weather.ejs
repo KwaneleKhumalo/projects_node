@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+</head>
+<body>
+
+    <form action="./" method="post">
+        <input class="lat" type="hidden" name="lat">
+        <input class="long" type="hidden" name="long">
+    </form>
+
+
+    <h1> <%= city %></h1>
+    <p>
+        Current weather is
+        <strong> <%=  weatherDesc %></strong>
+    </p>
+    <h1> <%= temp %> &#8457</h1>
+    <p> Feels like <%= feelsLike %></p>
+
+
+    <div>
+        <img src="<%= iconURL %>" alt="">
+    </div>
+
+    <script defer src="./location2.js"></script>
+
+</body>
+</html>
