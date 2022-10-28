@@ -1,0 +1,53 @@
+body{
+    background:linear-gradient( rgba(0, 0, 0, 0.681) 100%, rgba(0, 0, 0, 0.5)100%),url(./kazuend-2KXEb_8G5vo-unsplash.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+}
+
+.location{
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: center;
+    font-size:2em;
+}
+
+strong {
+    text-transform: capitalize;
+}
+
+.temperature{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 3rem;
+}
+
+.img {
+    width: 50%;
+    display: flex;
+    align-items:center;
+    justify-content: flex-end;
+}
+
+.img img {
+
+    width: 15%;
+}
+
+.text{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    font-size: 3em;
+}
+
+.feels
+{
+    text-align: center;
+    font-size: 30px;
+}

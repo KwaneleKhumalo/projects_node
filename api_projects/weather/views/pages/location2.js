@@ -1,6 +1,7 @@
 let latOut = document.querySelector('.lat'),
     longOut = document.querySelector('.long'),
     url = document.querySelector('.url');
+   
     window.load = () => {
         autoSubmit();
     }
@@ -20,11 +21,5 @@ function autoSubmit() {
     });
 
 }
-
-// window.load = () => {
-//     autoSubmit();
-//     alert('submit');
-// }
-
 
  

@@ -4,16 +4,36 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
     <title>Weather</title>
 </head>
 <body>
 
-    <form action="./" method="post">
+    <form action="/" method="post">
         <input class="lat" type="hidden" name="lat">
         <input class="long" type="hidden" name="long">
     </form>
 
+    <section class="container">
+        <div class="location">
+            <h1><%= city %</h1>
+            <strong> <%=  weatherDesc %></strong>
+        </div>
 
+        <div class="temperature">
+            <div class="img">
+                <img src="<%= iconURL %>" alt="">
+            </div>
+            <div class="text">
+                <h1> <%= temp %> &#8457</h1>    
+            </div>
+        </div>
+
+        <div class="feels">
+            <strong> Feels like <%= feelsLike %></strong>
+        </div>
+    </section>
+<!-- 
     <h1> <%= city %></h1>
     <p>
         Current weather is
@@ -25,9 +45,10 @@
 
     <div>
         <img src="<%= iconURL %>" alt="">
-    </div>
+    </div> -->
 
     <script defer src="./location2.js"></script>
-
+    
+    
 </body>
 </html>
